@@ -1,37 +1,54 @@
 <!doctype html>
 <html lang="fr">
-  <head>
-    <title>page 1</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  </head>
-  <body>
-        
-        <h1>Les professeurs</h1>
+<head>
+  <title>page 1</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <dl>
-          {% for prof in profs %}
-            <dt>Nom :</dt>
-            <dd>{{ prof.nom }}</dd>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
 
-            <dt>Prenom :</dt>
-            <dd>{{ prof.prenom }}</dd>
+<body>
+  <nav class="nav justify-content-center">
+    <a class="nav-link active" href="{{path('accueil')}}">Accueil</a>
+    <a class="nav-link active" href="{{path('app_eleves')}}">Les élèves</a>
+    <a class="nav-link active" href="{{path('app_classes')}}">Les classes</a>
+    <a class="nav-link active" href="{{path('app_matieres')}}">Les matiéres</a>
+    <a class="nav-link active" href="{{path('app_prof_create')}}">Creation de professeurs</a>
+  </nav>
 
-            <dt>Date de naissance :</dt>
-            <dd>{{ prof.dateDeNaissance|date('d/m/Y') }}</dd>
+  <h1>Les professeurs</h1>
 
-            <dt>Matiére :</dt>
-            <dd>{{ prof.matiere.nom }}</dd>
-          {% endfor %}
+  <dl>
+    {% for prof in profs %}
+    <dt>Nom :</dt>
+    <dd>{{ prof.nom }}</dd>
+
+    <dt>Prenom :</dt>
+    <dd>{{ prof.prenom }}</dd>
+
+    <dt>Date de naissance :</dt>
+    <dd>{{ prof.dateDeNaissance|date('d/m/Y') }}</dd>
+
+    <dt>Matiére :</dt>
+    <dd>{{ prof.matiere.nom }}</dd>
+    {% endfor %}
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </body>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"></script>
+</body>
+
 </html>
