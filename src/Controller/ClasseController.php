@@ -45,7 +45,7 @@ class ClasseController extends AbstractController
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
 
             $cr->add($classe);
-            return $this->redirectToRoute('classe/classes.html.twig');
+            return $this->redirectToRoute('app_classes');
         } else return $this->render('classe/create.html.twig', [
             'formView' => $formulaire->createView()
         ]);

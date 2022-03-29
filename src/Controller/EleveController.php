@@ -47,7 +47,7 @@ class EleveController extends AbstractController
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
 
             $er->add($eleve);
-            return $this->redirectToRoute('eleve/eleves.html.twig');
+            return $this->redirectToRoute('app_eleves');
         } else return $this->render('eleve/create.html.twig', [
             'formView' => $formulaire->createView()
         ]);

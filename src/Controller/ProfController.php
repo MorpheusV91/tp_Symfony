@@ -47,7 +47,7 @@ class ProfController extends AbstractController
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
 
             $cr->add($prof);
-            return $this->redirectToRoute('prof/profs.html.twig');
+            return $this->redirectToRoute('app_profs');
         } else return $this->render('prof/create.html.twig', [
             'formView' => $formulaire->createView()
         ]);

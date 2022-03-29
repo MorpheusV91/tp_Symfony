@@ -43,7 +43,7 @@ class MatiereController extends AbstractController
         if ($formulaire->isSubmitted() && $formulaire->isValid()) {
 
             $mr->add($matiere);
-            return $this->redirectToRoute('matiere/matieres.html.twig');
+            return $this->redirectToRoute('app_matieres');
         } else return $this->render('matiere/create.html.twig', [
             'formView' => $formulaire->createView()
         ]);
