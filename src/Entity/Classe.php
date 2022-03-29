@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ClasseRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -26,6 +28,22 @@ class Classe
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $niveau;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Prof::class, inversedBy="classes")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $prof;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Eleve::class, mappedBy="classe", orphanRemoval=true)
+     */
+    private $eleves;
+
+    public function __construct()
+    {
+        $this->eleves = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -52,6 +70,48 @@ class Classe
     public function setNiveau(?string $niveau): self
     {
         $this->niveau = $niveau;
+
+        return $this;
+    }
+
+    public function getProf(): ?Prof
+    {
+        return $this->prof;
+    }
+
+    public function setProf(?Prof $prof): self
+    {
+        $this->prof = $prof;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Eleve>
+     */
+    public function getEleves(): Collection
+    {
+        return $this->eleves;
+    }
+
+    public function addElefe(Eleve $elefe): self
+    {
+        if (!$this->eleves->contains($elefe)) {
+            $this->eleves[] = $elefe;
+            $elefe->setClasse($this);
+        }
+
+        return $this;
+    }
+
+    public function removeElefe(Eleve $elefe): self
+    {
+        if ($this->eleves->removeElement($elefe)) {
+            // set the owning side to null (unless already changed)
+            if ($elefe->getClasse() === $this) {
+                $elefe->setClasse(null);
+            }
+        }
 
         return $this;
     }

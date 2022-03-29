@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProfRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,6 +33,22 @@ class Prof
      * @ORM\Column(type="date", nullable=true)
      */
     private $date_de_naissance;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Matiere::class, inversedBy="profs")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $matiere;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Classe::class, mappedBy="prof", orphanRemoval=true)
+     */
+    private $classes;
+
+    public function __construct()
+    {
+        $this->classes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -72,4 +90,48 @@ class Prof
 
         return $this;
     }
+
+    public function getMatiere(): ?Matiere
+    {
+        return $this->matiere;
+    }
+
+    public function setMatiere(?Matiere $matiere): self
+    {
+        $this->matiere = $matiere;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Classe>
+     */
+    public function getClasses(): Collection
+    {
+        return $this->classes;
+    }
+
+    public function addClass(Classe $class): self
+    {
+        if (!$this->classes->contains($class)) {
+            $this->classes[] = $class;
+            $class->setProf($this);
+        }
+
+        return $this;
+    }
+
+    public function removeClass(Classe $class): self
+    {
+        if ($this->classes->removeElement($class)) {
+            // set the owning side to null (unless already changed)
+            if ($class->getProf() === $this) {
+                $class->setProf(null);
+            }
+        }
+
+        return $this;
+    }
+
+    
 }
