@@ -52,4 +52,14 @@ class ProfController extends AbstractController
             'formView' => $formulaire->createView()
         ]);
     }
+
+    /**
+     * @Route("/prof/{id}/delete", name="app_prof_delete")
+     */
+    public function delete($id, ProfRepository $pr): Response
+    {
+        $pr->remove($pr->find($id));
+
+        return $this->redirectToRoute('app_profs');
+    }
 }
