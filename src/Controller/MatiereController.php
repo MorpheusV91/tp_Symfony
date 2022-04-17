@@ -48,4 +48,14 @@ class MatiereController extends AbstractController
             'formView' => $formulaire->createView()
         ]);
     }
+
+    /**
+     * @Route("/matiere/{id}/delete", name="app_matiere_delete")
+     */
+    public function delete($id, MatiereRepository $mr): Response
+    {
+        $mr->remove($mr->find($id));
+
+        return $this->redirectToRoute('app_matieres');
+    }
 }

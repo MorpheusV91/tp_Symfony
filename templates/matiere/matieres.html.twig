@@ -24,6 +24,11 @@
           {% for matiere in matieres %}
             <dt>Nom :</dt>
             <dd>{{ matiere.nom }}</dd>
+
+            <dd>
+              <a href="{{path('app_matiere_delete', {id: matiere.id})}}" class="btn btn-danger" onclick="return confirm('Etes-vous ok pour supprimer???')">Supprimer</a>
+                       <i class="fa fa-trash" aria-hidden="true"></i>
+            </dd>
           {% endfor %}
 
     <!-- Optional JavaScript -->
